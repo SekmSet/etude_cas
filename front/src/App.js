@@ -11,6 +11,7 @@ import Detail from "./component/houses/detail";
 import Home from "./component/pages/home";
 import Reservation from "./component/user/reservation";
 import Profil from "./component/user/profil";
+import {UserProvider, UserConsumer} from "./context/context";
 
 
 const firebaseConfig = {
@@ -25,20 +26,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function App() {
+
   return (
     <div className="App">
-      <Header/>
-        <BrowserRouter>
-            <Routes>
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profil" element={<Profil />} />
-              <Route path="/detail/:id" element={<Detail />} />
-              <Route path="/reservation" element={<Reservation />} />
-              <Route path="/" element={<Home />} />
-            </Routes>
-        </BrowserRouter>
-      <Footer/>
+        <UserProvider>
+                <div>
+                  <Header/>
+                    <BrowserRouter>
+                        <Routes>
+                          <Route path="/register" element={<Register />} />
+                          <Route path="/login" element={<Login />} />
+                          <Route path="/profil" element={<Profil />} />
+                          <Route path="/detail/:id" element={<Detail />} />
+                          <Route path="/reservation" element={<Reservation />} />
+                          <Route path="/" element={<Home />} />
+                        </Routes>
+                    </BrowserRouter>
+                    <Footer/>
+                </div>
+        </UserProvider>
     </div>
   );
 }
