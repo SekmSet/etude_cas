@@ -1,7 +1,7 @@
 const Profil = () => {
     return (
         <div>
-            HOME
+            Profil
         </div>
     )
 }

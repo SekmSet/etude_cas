@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url(https://images.unsplash.com/photo-1502602898657-3e91760cbb34);
+  background-size: cover;
 }
 
 code {
