@@ -1,7 +1,7 @@
 const Register = () => {
     return (
         <div>
-            HOME
+
         </div>
     )
 }
