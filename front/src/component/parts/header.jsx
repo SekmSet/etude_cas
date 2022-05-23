@@ -16,10 +16,10 @@ const Header = () => {
                 className="me-auto my-2 my-lg-0"
                 style={{ maxHeight: '100px' }}
                 navbarScroll>
-                <Nav.Link href="#">
+                <Nav.Link href="/login">
                     Login
                 </Nav.Link>
-                <Nav.Link href="#">
+                <Nav.Link href="/register">
                     Sigin
                 </Nav.Link>
             </Nav>

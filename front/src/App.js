@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import './App.css';
 import Header from "./component/parts/header";
-import Footer from "./component/parts/footer";
 import Register from "./component/auth/register";
 import Login from "./component/auth/login";
 import Detail from "./component/houses/detail";
@@ -32,7 +31,6 @@ function App() {
                                 <Route path="*" element={<Error404 />} />
                             </Routes>
                         </BrowserRouter>
-                        <Footer/>
                     </div>
                 )} />
             </UserProvider>
