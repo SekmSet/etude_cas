@@ -1,4 +1,5 @@
 import {signInWithEmailAndPassword} from "firebase/auth";
+import {toast} from "react-toastify";
 
 const loginFirebase = (
     auth,
@@ -6,7 +7,7 @@ const loginFirebase = (
     password,
     setAuth
 ) => {
-    signInWithEmailAndPassword(auth, email, password)
+    return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
 
@@ -16,12 +17,16 @@ const loginFirebase = (
                 setAuth({
                     id: stsTokenManager.id,
                 })
+                toast("Connexion réussi")
+                return true
             } else {
-                console.log("error")
+                toast("Error lors de la connexion")
+                return false
             }
         })
         .catch((error) => {
             console.error("Impossible d'effectuer la connexion", error);
+            toast("Impossible d'effectuer la connexion")
         });
 };
 

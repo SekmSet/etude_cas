@@ -12,9 +12,11 @@ const Login = () => {
 
     const {setAuth} = useContext(UserContext)
 
-    const handleLogin = (data) => {
-        loginFirebase(auth, data.email, data.password, setAuth);
-        navigate("/");
+    const handleLogin = async (data) => {
+        const isLogin = await loginFirebase(auth, data.email, data.password, setAuth);
+        if (isLogin) {
+            navigate("/");
+        }
     };
 
     return (
