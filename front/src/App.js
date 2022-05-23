@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { initializeApp } from 'firebase/app';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import './App.css';
 import Header from "./component/parts/header";
@@ -11,42 +10,34 @@ import Detail from "./component/houses/detail";
 import Home from "./component/pages/home";
 import Reservation from "./component/user/reservation";
 import Profil from "./component/user/profil";
-import {UserProvider, UserConsumer} from "./context/context";
-
-
-const firebaseConfig = {
-    apiKey: process.env.REACT_APP_APIKEY,
-    authDomain: process.env.REACT_APP_AUTHDOMAIN,
-    projectId: process.env.REACT_APP_PROJECTID,
-    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
-    appId: process.env.REACT_APP_APPID,
-};
-
-const app = initializeApp(firebaseConfig);
+import {UserConsumer, UserProvider} from "./context/context";
+import './firebase'
+import Error404 from "./component/pages/error404";
 
 function App() {
-
-  return (
-    <div className="App">
-        <UserProvider>
-                <div>
-                  <Header/>
-                    <BrowserRouter>
-                        <Routes>
-                          <Route path="/register" element={<Register />} />
-                          <Route path="/login" element={<Login />} />
-                          <Route path="/profil" element={<Profil />} />
-                          <Route path="/detail/:id" element={<Detail />} />
-                          <Route path="/reservation" element={<Reservation />} />
-                          <Route path="/" element={<Home />} />
-                        </Routes>
-                    </BrowserRouter>
-                    <Footer/>
-                </div>
-        </UserProvider>
-    </div>
-  );
+    return (
+        <div className="App">
+            <UserProvider>
+                <UserConsumer children={({isAuth}) => (
+                    <div>
+                        <Header/>
+                        <BrowserRouter>
+                            <Routes>
+                                <Route path="/register" element={<Register/>}/>
+                                <Route path="/login" element={<Login/>}/>
+                                {isAuth && <Route path="/profil" element={<Profil/>}/>}
+                                <Route path="/detail/:id" element={<Detail/>}/>
+                                <Route path="/reservation" element={<Reservation/>}/>
+                                <Route path="/" element={<Home/>}/>
+                                <Route path="*" element={<Error404 />} />
+                            </Routes>
+                        </BrowserRouter>
+                        <Footer/>
+                    </div>
+                )} />
+            </UserProvider>
+        </div>
+    );
 }
 
 export default App;

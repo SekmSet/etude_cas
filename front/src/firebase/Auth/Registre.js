@@ -21,7 +21,7 @@ createUserWithEmailAndPassword(auth, email, password)
         return true;
     })
     .catch((error) => {
-        console.error("Problème de connexion");
+        console.error("Problème de connexion", error);
         return false;
     });
 

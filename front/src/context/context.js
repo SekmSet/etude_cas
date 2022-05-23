@@ -1,31 +1,35 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {auth} from '../firebase/index'
 
 const UserContext = React.createContext(undefined);
 
 export const UserProvider = ({ children }) => {
-    const [token, setToken] = useState(localStorage.getItem('token'));
-    const [uid, setUid] = useState(localStorage.getItem('email'));
-    const [isAuth, setIsAuth] = useState(token !== null && uid !== null);
+    const [uid, setUid] = useState(null);
+    const [isAuth, setIsAuth] = useState(false);
 
-    const setAuth = ({ token, uid }) => {
-        localStorage.setItem('token', token);
-        localStorage.setItem('uid', uid);
-        setToken(token);
+    auth.onAuthStateChanged(async (user) => {
+        if (user) {
+            setUid(user.uid)
+            setIsAuth(true);
+        } else {
+            setUid(null)
+            setIsAuth(false)
+        }
+    })
+
+
+    const setAuth = ({ uid }) => {
         setUid(uid);
         setIsAuth(true);
     };
 
     const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('uid');
-        setToken('');
-        setUid('');
+        setUid(null);
         setIsAuth(false);
     };
 
     const data = {
-        token,
         uid,
         isAuth,
         setAuth,

@@ -15,14 +15,13 @@ const loginFirebase = (
                 console.log("stsTokenManager : ", stsTokenManager)
                 setAuth({
                     id: stsTokenManager.id,
-                    token: user.stsTokenManager.token
                 })
             } else {
                 console.log("error")
             }
         })
         .catch((error) => {
-            console.error("Impossible d'effectuer la connexion");
+            console.error("Impossible d'effectuer la connexion", error);
         });
 };
 
