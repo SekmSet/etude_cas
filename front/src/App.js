@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
@@ -21,8 +21,8 @@ function App() {
             <UserProvider>
                 <UserConsumer children={({isAuth}) => (
                     <div>
-                        <Header/>
                         <BrowserRouter>
+                            <Header/>
                             <Routes>
                                 <Route path="/register" element={<Register/>}/>
                                 <Route path="/login" element={<Login/>}/>
@@ -30,13 +30,13 @@ function App() {
                                 <Route path="/detail/:id" element={<Detail/>}/>
                                 <Route path="/reservation" element={<Reservation/>}/>
                                 <Route path="/" element={<Home/>}/>
-                                <Route path="*" element={<Error404 />} />
+                                <Route path="*" element={<Error404/>}/>
                             </Routes>
                         </BrowserRouter>
                     </div>
-                )} />
+                )}/>
             </UserProvider>
-            <ToastContainer />
+            <ToastContainer/>
         </div>
     );
 }

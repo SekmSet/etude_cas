@@ -9,24 +9,24 @@ const registerForm = async (
     email,
     password
 ) =>
-createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
 
-        if (user.stsTokenManager) {
-            sendEmailVerification(auth.currentUser).then(() => {
-                console.log("send email verification")
-                toast("Un email de validation vous a été envoyé")
-            });
-        }
+            if (user.stsTokenManager) {
+                sendEmailVerification(auth.currentUser).then(() => {
+                    console.log("send email verification")
+                    toast("Un email de validation vous a été envoyé")
+                });
+            }
 
-        return true;
-    })
-    .catch((error) => {
-        console.error("Problème lors de l'inscription", error);
-        toast("Problème lors de l'inscription")
+            return true;
+        })
+        .catch((error) => {
+            console.error("Problème lors de l'inscription", error);
+            toast("Problème lors de l'inscription")
 
-        return false;
-    });
+            return false;
+        });
 
-export { registerForm };
+export {registerForm};

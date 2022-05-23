@@ -4,35 +4,65 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
+import UserContext from "../../context/context";
+import {useContext} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {logoutFirebase} from "../../firebase/Auth/Logout";
 
 const Header = () => {
+    const {isAuth, logout} = useContext(UserContext)
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await logoutFirebase()
+        logout()
+        navigate("/")
+    }
+
     return (
         <Navbar bg="light" expand="lg">
-        <Container fluid>
-            <Navbar.Brand>Swinger room</Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-            <Nav
-                className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
-                navbarScroll>
-                <Nav.Link href="/login">
-                    Login
-                </Nav.Link>
-                <Nav.Link href="/register">
-                    Sigin
-                </Nav.Link>
-            </Nav>
-            <Form className="d-flex">
-                <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"/>
-                <Button variant="primary">Search</Button>
-            </Form>
-            </Navbar.Collapse>
-        </Container>
+            <Container fluid>
+                <Navbar.Brand>Swinger room</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll"/>
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav
+                        className="me-auto my-2 my-lg-0"
+                        style={{maxHeight: '100px'}}
+                        navbarScroll>
+                        {isAuth && (
+                            <Link to="/profil" className="nav-link">
+                                Profil
+                            </Link>
+                        )}
+                        {!isAuth && (
+                            <>
+                                <Link to="/login" className="nav-link">
+                                    Login
+                                </Link>
+                                <Link to="/register" className="nav-link">
+                                    Sigin
+                                </Link>
+                            </>
+                        )}
+
+                    </Nav>
+                    <Form className="d-flex">
+                        <FormControl
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"/>
+                        <Button variant="primary">Search</Button>
+
+                        {isAuth && (
+                            <Button variant="danger" onClick={handleLogout}>Logout</Button>
+
+                        )}
+                    </Form>
+
+
+                </Navbar.Collapse>
+            </Container>
         </Navbar>
     )
 }
