@@ -26,7 +26,9 @@ const Header = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand>Swinger room</Navbar.Brand>
+                <Navbar.Brand><Link to="/" className="nav-link">
+                    Swinger room
+                </Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll"/>
                 <Navbar.Collapse id="navbarScroll">
                     <Nav

@@ -1,12 +1,25 @@
-const Detail = () => {
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {getHouse, getRoomsByAppartement} from "../../firebase/rooms";
 
-    const apartment = {
-        id: 1,
-        name: "Penthouse",
-        street: "12 rue de la craie Ducu",
-        zipcode: "75005",
-        city: "Paris",
-    };
+const Detail = () => {
+   const { id } = useParams()
+
+    const [house, setHouse] = useState(undefined)
+    const [rooms, setRooms] = useState(undefined)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await getHouse(id)
+            const rooms = await getRoomsByAppartement(id)
+            setHouse(result)
+            setRooms(rooms)
+        }
+
+        fetchData()
+            .catch(console.error);
+
+    }, [])
 
     const styles = {
         cardContainer : {
@@ -38,10 +51,11 @@ const Detail = () => {
 
     return (
         <div>
-            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + apartment.id} style={styles.imgSTyling} />
-            <h2>{apartment.name}</h2>
-            <p>{apartment.street}</p>
-            <p>{apartment.zipcode} {apartment.city}</p>
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + house?.uid} style={styles.imgSTyling} />
+            <h2>{house?.name}</h2>
+            <p>{house?.adresse?.rue}</p>
+            <p>{house?.adresse?.CP} {house?.adresse?.ville}</p>
+
         </div>
     )
 }
