@@ -11,9 +11,10 @@ import Detail from "./component/houses/detail";
 import Home from "./component/pages/home";
 import Reservation from "./component/user/reservation";
 import Profil from "./component/user/profil";
+import Error404 from "./component/pages/error404";
+
 import {UserConsumer, UserProvider} from "./context/context";
 import './firebase'
-import Error404 from "./component/pages/error404";
 
 function App() {
     return (
