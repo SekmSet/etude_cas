@@ -15,6 +15,7 @@ import Error404 from "./component/pages/error404";
 
 import {UserConsumer, UserProvider} from "./context/context";
 import './firebase'
+import List from "./component/houses/list";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                                 <Route path="/login" element={<Login/>}/>
                                 {isAuth && <Route path="/profil" element={<Profil/>}/>}
                                 <Route path="/detail/:id" element={<Detail/>}/>
+                                <Route path="/detail" element={<List/>}/>
                                 <Route path="/reservation" element={<Reservation/>}/>
                                 <Route path="/" element={<Home/>}/>
                                 <Route path="*" element={<Error404/>}/>

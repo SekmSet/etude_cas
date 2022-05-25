@@ -1,6 +1,7 @@
 import db from "../index";
 import { collection, getDocs } from "firebase/firestore";
 
+// get all rooms
 const getRooms = async () => {
     let rooms = [];
 
@@ -23,19 +24,20 @@ const getRooms = async () => {
     return rooms;
 }
 
+// get room by id
 const getRoom = async (id) => {
     const rooms = await getRooms()
     const room = rooms.find((room) => room.uid === id);
     return room;
 }
 
+// get all rooms in a house whith the id house
 const getRoomsByAppartement = async (idHouse) => {
     const rooms = await getRooms()
-    const r = rooms.filter((room) => room.appartement === idHouse);
-
-    console.log("getRoomsByAppartement  ", r)
+    return rooms.filter((room) => room.appartement === idHouse);
 }
 
+// List all houses
 const getHouses = async () => {
     let houses = [];
 
@@ -60,11 +62,13 @@ const getHouses = async () => {
     return houses;
 }
 
+// get house by ID
 const getHouse = async (id) => {
     const houses = await getHouses()
     return houses.find((house) => house.uid === id);
 }
 
+// get houses by CITY
 const getHousesByCity = async (ville) => {
     const houses = await getHouses()
     const results = []
