@@ -13,7 +13,6 @@ const List = () => {
         }
         fetchData()
             .catch(console.error);
-
     }, [])
 
     const styles = {
@@ -46,16 +45,16 @@ const List = () => {
 
     const renderCard = (card, index) => {
         return (
-            <Link to={`/detail/${card?.uid}`} style={styles.linkStyling}>
-                <div style={styles.cardStyling} key={index} className="box">
-                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + card?.uid} style={styles.imgSTyling} />
-                    <div style={styles.bodyStyling}>
-                        <h2>{card.name}</h2>
-                        <p>{card.adresse?.rue}</p>
-                        <p>{card.adresse?.CP} {card.adresse?.ville}</p>
-                    </div>
+            <Link to={`/detail/${card.uid}`} style={styles.linkStyling} key={index} >
+            <div style={styles.cardStyling} className="box">
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + card.uid} style={styles.imgSTyling} />
+                <div style={styles.bodyStyling}>
+                    <p>{card.name} ({card.taille} m²)</p>
+                    <p>{card.adresse.rue}</p>
+                    <p>{card.adresse.cp} {card.adresse.ville}</p>
                 </div>
-            </Link>
+            </div>
+        </Link>
         );
     };
 

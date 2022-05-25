@@ -1,43 +1,19 @@
 import { Link } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {getHouses, getHousesByCity} from "../../firebase/rooms";
 
 const Search = () => {
-    const apartments = [
-        {
-            id: 1,
-            name: "Penthouse",
-            street: "12 rue de la craie Ducu",
-            zipcode: "75005",
-            city: "Paris",
-        },
-        {
-            id: 2,
-            name: "Bouiboui",
-            street: "69 rue l'étroit mousquetaire",
-            zipcode: "69003",
-            city: "Lyon",
-        },
-        {
-            id: 3,
-            name: "Maison de ville",
-            street: "567 avenue de la peau lisse",
-            zipcode: "69002",
-            city: "Lyon",
-        },
-        {
-            id: 4,
-            name: "Appartement",
-            street: "45 rue de priscillabitch",
-            zipcode: "75010",
-            city: "Paris",
-        },
-        {
-            id: 5,
-            name: "Appartement",
-            street: "12 rue Lord Mokka",
-            zipcode: "13002",
-            city: "Marseille",
-        },
-    ];
+    const [allHouses, setAllHouses] = useState(undefined)
+    const [housesByCity, setHouseByCity] = useState(undefined)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const resultsAllHouses = await getHouses()
+            setAllHouses(resultsAllHouses)
+        }
+        fetchData()
+            .catch(console.error);
+    }, [])
 
     const styles = {
         cardContainer : {
@@ -68,23 +44,23 @@ const Search = () => {
     };
   
     const renderCard = (card, index) => {
-      return (
-        <Link to={`/detail/${card.id}`} style={styles.linkStyling}>
-            <div style={styles.cardStyling} key={index} className="box">
-                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + card.id} style={styles.imgSTyling} />
-                <div style={styles.bodyStyling}>
-                    <h2>{card.name}</h2>
-                    <p>{card.street}</p>
-                    <p>{card.zipcode} {card.city}</p>
+        return (
+            <Link to={`/detail/${card.uid}`} style={styles.linkStyling} key={index} >
+                <div style={styles.cardStyling} className="box">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + card.uid} style={styles.imgSTyling} />
+                    <div style={styles.bodyStyling}>
+                        <p>{card.name} ({card.taille} m²)</p>
+                        <p>{card.adresse.rue}</p>
+                        <p>{card.adresse.cp} {card.adresse.ville}</p>
+                    </div>
                 </div>
-            </div>
-        </Link>
-      );
+            </Link>
+        );
     };
   
     return (
         <div style={styles.cardContainer}>
-            {apartments.map(renderCard)}
+            {allHouses.map(renderCard)}
         </div>
     )
   };
