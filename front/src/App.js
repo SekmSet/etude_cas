@@ -7,7 +7,6 @@ import './App.css';
 import Header from "./component/parts/header";
 import Register from "./component/auth/register";
 import Login from "./component/auth/login";
-import Detail from "./component/houses/detail";
 import Home from "./component/pages/home";
 import Reservation from "./component/user/reservation";
 import Profil from "./component/user/profil";
@@ -15,7 +14,10 @@ import Error404 from "./component/pages/error404";
 
 import {UserConsumer, UserProvider} from "./context/context";
 import './firebase'
-import List from "./component/houses/list";
+import ListRooms from "./component/rooms/list";
+import DetailRoom from "./component/rooms/detail";
+import DetailHouse from "./component/houses/detail";
+import ListHouses from "./component/houses/list";
 
 function App() {
     return (
@@ -29,8 +31,10 @@ function App() {
                                 <Route path="/register" element={<Register/>}/>
                                 <Route path="/login" element={<Login/>}/>
                                 {isAuth && <Route path="/profil" element={<Profil/>}/>}
-                                <Route path="/detail/:id" element={<Detail/>}/>
-                                <Route path="/detail" element={<List/>}/>
+                                <Route path="/chambres/:id" element={<DetailRoom/>}/>
+                                <Route path="/appartements/:id" element={<DetailHouse/>}/>
+                                <Route path="/appartements" element={<ListHouses/>}/>
+                                <Route path="/chambres" element={<ListRooms/>}/>
                                 <Route path="/reservation" element={<Reservation/>}/>
                                 <Route path="/" element={<Home/>}/>
                                 <Route path="*" element={<Error404/>}/>

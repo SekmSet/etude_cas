@@ -2,9 +2,9 @@ import React, {useContext, useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import UserContext from "../../context/context";
 import {Link, useNavigate} from "react-router-dom";
-import {getHousesByCity} from "../../firebase/rooms";
+import {getHouses, getHousesByCity} from "../../firebase/rooms";
 
-const SearchHouses = () => {
+const SearchRooms = () => {
     const {city, date} = useContext(UserContext)
     const [allHouses, setHouses] = useState(undefined)
 
@@ -47,13 +47,12 @@ const SearchHouses = () => {
 
     const renderCard = (card, index) => {
         return (
-            <Link to={`/detail/${card.uid}`} style={styles.linkStyling} key={index} >
+            <Link to={`/chambre/detail/${card.uid}`} style={styles.linkStyling} key={index} >
                 <div style={styles.cardStyling} className="box">
                     <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + card.uid} style={styles.imgSTyling} />
                     <div style={styles.bodyStyling}>
-                        <p>{card.name} ({card.taille} m²)</p>
-                        <p>{card.adresse.rue}</p>
-                        <p>{card.adresse.cp} {card.adresse.ville}</p>
+                        <p>Chambre {card.theme} ({card.taille} m²)</p>
+                        <p>Tarif : {card.prix} € / nuit</p>
                     </div>
                 </div>
             </Link>
@@ -62,9 +61,9 @@ const SearchHouses = () => {
 
     return (
         <div style={styles.cardContainer}>
-            {allHouses?.map(renderCard)}
+            {allRooms?.map(renderCard)}
         </div>
     )
-};
+  };
 
-export default SearchHouses
+export default SearchRooms

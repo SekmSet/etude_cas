@@ -1,5 +1,6 @@
 import Search from "../houses/search";
 import { Link } from "react-router-dom";
+import SearchHome from "./search";
 
 const styles = {
     mainContainer : {
@@ -38,11 +39,11 @@ const Home = () => {
             <h2 style={styles.titleStyling}>Trouvez un logement partout en France pour vous accompagner !</h2>
             <h2 style={styles.titleStyling}>Où que vous alliez nous sommes là, avec vous.</h2>
             <div style={styles.searchStyling}>
-                <Search />
+                <SearchHome />
             </div>
             <div style={styles.buttonsDiv}>
-                <Link to="/detail/" style={styles.buttonStyling}>Rechercher un appartement</Link>
-                <Link to="/detail/" style={styles.buttonStyling}>Rechercher une chambre</Link>
+                <Link to="/appartements" style={styles.buttonStyling}>Rechercher un appartement</Link>
+                <Link to="/chambres" style={styles.buttonStyling}>Rechercher une chambre</Link>
             </div>
         </div>
     )
