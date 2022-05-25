@@ -19,6 +19,10 @@ const Header = () => {
         navigate("/")
     }
 
+    const logoutButton = {
+        marginLeft: "10px",
+    }
+
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
@@ -55,7 +59,7 @@ const Header = () => {
                         <Button variant="primary">Search</Button>
 
                         {isAuth && (
-                            <Button variant="danger" onClick={handleLogout}>Logout</Button>
+                            <Button style={logoutButton} variant="danger" onClick={handleLogout}>Logout</Button>
 
                         )}
                     </Form>
