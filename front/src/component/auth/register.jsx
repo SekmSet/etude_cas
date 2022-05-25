@@ -13,9 +13,8 @@ const Register = () => {
 
         if (password === confirmPassword) {
             const isRegister = await registerForm(auth, email, password);
-
             if (isRegister) {
-                navigate("/login");
+                navigate("/");
             }
         }
     };
