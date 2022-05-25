@@ -1,8 +1,9 @@
+import Search from "../houses/search";
+
 const Home = () => {
     return (
-
         <div>
-            Home
+            <Search />
         </div>
     )
 }
