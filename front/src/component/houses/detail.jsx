@@ -24,38 +24,37 @@ const Detail = () => {
     const styles = {
         cardContainer : {
             display: "flex",
-            flexWrap: "wrap",
-            padding: "50px",
+            marginTop: "50px",
+            justifyContent: "space-around",
+            alignItems: "center",
         },
         cardStyling : {
             border: "1px solid black",
             backgroundColor: "rgb(220,220,220)",
-            margin: "0 15px 15px 0",
-            width: "250px",
-            height: "350px",
-            minWidth: "250px",
-            minHeight: "350px",
-            cursor: "pointer",
+            width: "350px",
+            height: "400px",
+            minWidth: "350px",
+            minHeight: "400px",
         },
         imgSTyling: {
             width: "600px",
         },
-        bodyStyling: {
-            marginTop: "20px",
-        },
-        linkStyling: {
-            color: "black",
-            textDecoration: "none",
-        },
     };
 
     return (
-        <div>
+        <div style={styles.cardContainer}>
             <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + house?.uid} style={styles.imgSTyling} />
-            <h2>{house?.name}</h2>
-            <p>{house?.adresse?.rue}</p>
-            <p>{house?.adresse?.CP} {house?.adresse?.ville}</p>
-
+            <div style={styles.cardStyling}>
+                <h2>{house?.name}</h2>
+                <p>{house?.adresse?.rue}</p>
+                <p>{house?.adresse?.CP} {house?.adresse?.ville}</p>
+                <p>Taille : {house?.taille}</p>
+                <p>Balcon : {house?.balcon}</p>
+                <p>Chambres : {house?.chambres}</p>
+                <p>Fumeur : {house?.fumeur ? 'oui' : 'non'}</p>
+                <p>Jardin : {house?.jardin ? 'oui' : 'non'}</p>
+                <p>Parking : {house?.parking ? 'oui' : 'non'}</p>
+            </div>
         </div>
     )
 }
