@@ -13,9 +13,10 @@ const loginFirebase = (
 
             if (user.emailVerified && user.stsTokenManager) {
                 const stsTokenManager = JSON.stringify(user.stsTokenManager);
-                console.log("stsTokenManager : ", stsTokenManager)
+
                 setAuth({
                     id: stsTokenManager.id,
+                    email: stsTokenManager.email,
                 })
                 toast("Connexion réussi")
                 return true

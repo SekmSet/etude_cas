@@ -1,12 +1,5 @@
-const user = {
-    firstname: "John",
-    lastname: "Doe",
-    phone: "0602358965",
-    mail: "johndoe@gmail.com",
-    address: "12 rue de la république Lyon",
-    birthdate: "16/05/1992",
-    nationality: "Français",
-}
+import {useContext, useState} from "react";
+import UserContext from "../../context/context";
 
 const styles = {
     mainCOntainer : {
@@ -58,15 +51,27 @@ const styles = {
 }
 
 const Profil = () => {
+
+    const [data, setData] = useState({
+        firstname: "John",
+        lastname: "Doe",
+        phone: "0602358965",
+        mail: "johndoe@gmail.com",
+        address: "12 rue de la république Lyon",
+        birthdate: "16/05/1992",
+        nationality: "Français",
+    })
+    const {uid} = useContext(UserContext)
+
     return (
         <div style={styles.mainCOntainer}>
             <div style={styles.profileStyling}>
-                <h2 style={styles.title}>{user.firstname} {user.lastname}</h2>
-                <p style={styles.userProfileEntries}>Tél : {user.phone}</p>
-                <p style={styles.userProfileEntries}>Email : {user.mail}</p>
-                <p style={styles.userProfileEntries}>Adresse : {user.address}</p>
-                <p style={styles.userProfileEntries}>Date de naissance : {user.birthdate}</p>
-                <p style={styles.userProfileEntries}>Nationalité : {user.nationality}</p>
+                <h2 style={styles.title}>{data.firstname} {data.lastname}</h2>
+                <p style={styles.userProfileEntries}>Tél : {data.phone}</p>
+                <p style={styles.userProfileEntries}>Email : {data.mail}</p>
+                <p style={styles.userProfileEntries}>Adresse : {data.address}</p>
+                <p style={styles.userProfileEntries}>Date de naissance : {data.birthdate}</p>
+                <p style={styles.userProfileEntries}>Nationalité : {data.nationality}</p>
             </div>
             <div style={styles.tableDivStyling}>
                 <h2 style={styles.title}>Mes réservations</h2>
