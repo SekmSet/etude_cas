@@ -2,22 +2,17 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getAuth } from "firebase/auth";
 import {registerForm} from "../../firebase/Auth/Registre";
-import {getHouseByCity, getHousesByCity, getRoom, getRooms} from "../../firebase/rooms";
 
 const Register = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const auth = getAuth();
 
-    getHousesByCity("LYON")
-
     const handleRegister = async (data) => {
         const { email, password, confirmPassword } = data;
 
         if (password === confirmPassword) {
             const isRegister = await registerForm(auth, email, password);
-            await getRooms()
-            await getRoom()
             if (isRegister) {
                 navigate("/");
             }

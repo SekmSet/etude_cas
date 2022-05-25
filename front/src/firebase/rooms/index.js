@@ -10,7 +10,7 @@ const getRooms = async () => {
                 ...rooms,
                 {
                     uid: doc.id,
-                    appartment: doc.data().appartement,
+                    appartement: doc.data().appartement,
                     lit : doc.data().lit,
                     personne : doc.data().personne,
                     prix : doc.data().prix,
@@ -19,7 +19,7 @@ const getRooms = async () => {
                 },
             ];
     });
-    console.log(rooms)
+
     return rooms;
 }
 
@@ -29,10 +29,12 @@ const getRoom = async (id) => {
     return room;
 }
 
-// const getRoomsByCity = async (city) => {
-//     const rooms = await getRooms()
-//     return rooms.find((room) => room.adresse.ville === city);
-// }
+const getRoomsByAppartement = async (idHouse) => {
+    const rooms = await getRooms()
+    const r = rooms.filter((room) => room.appartement === idHouse);
+
+    console.log("getRoomsByAppartement  ", r)
+}
 
 const getHouses = async () => {
     let houses = [];
@@ -55,7 +57,6 @@ const getHouses = async () => {
             },
         ];
     });
-    console.log(houses)
     return houses;
 }
 
@@ -67,27 +68,20 @@ const getHouse = async (id) => {
 const getHousesByCity = async (ville) => {
     const houses = await getHouses()
     const results = []
-    const r = houses.filter((house) => {
-        const city = house.adresse.ville
 
-        console.log(city.toLowerCase(), ville.toLowerCase())
-
-        if(city.toLowerCase() === ville.toLowerCase) {
-            console.log(true)
-            results.push(house)
-            return house
-        } else {
-            return null
+    for(let i = 0; i < houses.length; i++) {
+        if(houses[i].adresse?.ville.toLowerCase() === ville.toLowerCase()) {
+            results.push(houses[i])
         }
-    });
-    console.log("r - ", r)
-    console.log("results - ", results)
+    }
+    return results
 }
 
 
 export {
     getRooms,
     getRoom,
+    getRoomsByAppartement,
     getHouses,
     getHouse,
     getHousesByCity
