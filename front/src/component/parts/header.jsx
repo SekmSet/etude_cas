@@ -26,7 +26,7 @@ const Header = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand><Link to="/" className="nav-link">
+                <Navbar.Brand> <Link to="/" className="nav-link">
                     Swinger room
                 </Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll"/>
@@ -53,12 +53,6 @@ const Header = () => {
 
                     </Nav>
                     <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"/>
-                        <Button variant="primary">Search</Button>
 
                         {isAuth && (
                             <Button style={logoutButton} variant="danger" onClick={handleLogout}>Logout</Button>
