@@ -9,6 +9,9 @@ export const UserProvider = ({ children }) => {
     const [email, setEmail] = useState(null);
     const [isAuth, setIsAuth] = useState(false);
 
+    const [city, setCity] = useState(undefined);
+    const [date, setDate] = useState(undefined);
+
     auth.onAuthStateChanged(async (user) => {
         if (user) {
             setUid(user.uid)
@@ -32,12 +35,20 @@ export const UserProvider = ({ children }) => {
         setIsAuth(false);
     };
 
+    const setSearch = ({city, date}) => {
+        setCity(city)
+        setDate(date)
+    }
+
     const data = {
         uid,
         email,
         isAuth,
+        city,
+        date,
         setAuth,
         setEmail,
+        setSearch,
         logout
     };
 
