@@ -12,6 +12,20 @@ const styles = {
     },
     searchStyling: {
         marginTop: "50px",
+    },
+    buttonsDiv: {
+        marginTop: "50px",
+        width: "800px",
+        display: "flex",
+        justifyContent: "space-around",
+    },
+    buttonStyling: {
+        width: "300px",
+        margin: "20px",
+        padding: "5px",
+        borderRadius: "10px",
+        backgroundColor: "rgb(55 136 255)",
+        color: "white",
     }
 }
 
@@ -23,6 +37,10 @@ const Home = () => {
             <h2 style={styles.titleStyling}>Où que vous alliez nous sommes là, avec vous.</h2>
             <div style={styles.searchStyling}>
                 <Search />
+            </div>
+            <div style={styles.buttonsDiv}>
+                <button style={styles.buttonStyling}>Rechercher un appartement</button>
+                <button style={styles.buttonStyling}>Rechercher une chambre</button>
             </div>
         </div>
     )
