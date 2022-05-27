@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {auth} from '../firebase/index'
 
@@ -12,17 +12,18 @@ export const UserProvider = ({ children }) => {
     const [city, setCity] = useState(undefined);
     const [date, setDate] = useState(undefined);
 
-    auth.onAuthStateChanged(async (user) => {
-        if (user) {
-            setUid(user.uid)
-            setEmail(user.email)
-            setIsAuth(true);
-        } else {
-            setUid(null)
-            setIsAuth(false)
-        }
-    })
-
+    useEffect(() => {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                setUid(user.uid)
+                setEmail(user.email)
+                setIsAuth(true);
+            } else {
+                setUid(null)
+                setIsAuth(false)
+            }
+        })
+    }, [setUid, setEmail, setIsAuth])
 
     const setAuth = ({ uid, email }) => {
         setUid(uid);
@@ -36,6 +37,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const setSearch = ({city, date}) => {
+        console.log(city, date)
         setCity(city)
         setDate(date)
     }

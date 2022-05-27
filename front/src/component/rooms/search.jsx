@@ -1,17 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
-import { useForm } from "react-hook-form";
 import UserContext from "../../context/context";
-import {Link, useNavigate} from "react-router-dom";
-import {getHouses, getHousesByCity} from "../../firebase/rooms";
+import {Link} from "react-router-dom";
+import {getRooms} from "../../firebase/rooms";
 
 const SearchRooms = () => {
     const {city, date} = useContext(UserContext)
-    const [allHouses, setHouses] = useState(undefined)
+    const [allRooms, setRooms] = useState(undefined)
 
     useEffect(() => {
         const fetchData = async () => {
-            const resultsHouseByCity = await getHousesByCity(city)
-            await setHouses(resultsHouseByCity)
+            const resultsHouseByCity = await getRooms(city)
+            await setRooms(resultsHouseByCity)
         }
         fetchData()
             .catch(console.error);

@@ -44,7 +44,7 @@ const ListRooms = () => {
 
     const renderCard = (card, index) => {
         return (
-            <Link to={`/chambre/detail/${card.uid}`} style={styles.linkStyling} key={index} >
+            <Link to={`/chambres/${card.uid}`} style={styles.linkStyling} key={index} >
             <div style={styles.cardStyling} className="box">
                 <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt={"image-" + card.uid} style={styles.imgSTyling} />
                 <div style={styles.bodyStyling}>

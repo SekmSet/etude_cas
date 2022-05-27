@@ -12,7 +12,7 @@ const SearchHome = () => {
         const city = data.where
         const date = data.date
         setSearch({city, date})
-        navigate("/chambres");
+        navigate("/chambres/search");
     };
 
     const styles = {

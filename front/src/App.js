@@ -18,6 +18,7 @@ import ListRooms from "./component/rooms/list";
 import DetailRoom from "./component/rooms/detail";
 import DetailHouse from "./component/houses/detail";
 import ListHouses from "./component/houses/list";
+import SearchRooms from "./component/rooms/search";
 
 function App() {
     return (
@@ -31,8 +32,9 @@ function App() {
                                 <Route path="/register" element={<Register/>}/>
                                 <Route path="/login" element={<Login/>}/>
                                 {isAuth && <Route path="/profil" element={<Profil/>}/>}
-                                <Route path="/chambres/:id" element={<DetailRoom/>}/>
                                 <Route path="/appartements/:id" element={<DetailHouse/>}/>
+                                <Route path="/chambres/search" element={<SearchRooms/>}/>
+                                <Route path="/chambres/:id" element={<DetailRoom/>}/>
                                 <Route path="/appartements" element={<ListHouses/>}/>
                                 <Route path="/chambres" element={<ListRooms/>}/>
                                 <Route path="/reservation" element={<Reservation/>}/>
